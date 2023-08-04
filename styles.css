@@ -1,6 +1,17 @@
+/* *{
+    border: 1px solid green
+} */
+body {
+    background-color: rgb(216, 240, 216);
+    margin-left: 12vw; 
+    margin-right: 12vw;
+}
+
 h1 {
     margin-top: 80px;
     margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
     text-align: center;
     font-size: 85px;
     font-weight: 800;
@@ -10,9 +21,41 @@ h1 {
 h2 {
     margin-top: 40px;
     margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
     text-align: center;
     font-size: 40px;
     font-weight: 200;
     width: 70vw;
+}
 
+
+.side-panel-left  {
+    margin: auto;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 150;
+    height: 100%;
+    width: 12vw;
+    position: fixed;
+    top: 0;
+    left: 0; 
+    background-color: rgb(230, 246, 234);
+    padding-top: 50px; 
+    border-right: 5px solid seagreen;
+}
+
+.side-panel-right {
+    margin: auto;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 150;
+    height: 100%;
+    width: 12vw;
+    position: fixed;
+    top: 0;
+    right: 0; 
+    background-color: rgb(230, 246, 234);
+    padding-top: 50px; 
+    border-left: 5px solid seagreen;
 }
