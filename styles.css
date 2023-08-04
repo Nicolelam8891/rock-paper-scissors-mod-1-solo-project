@@ -42,7 +42,7 @@ h2 {
     left: 0; 
     background-color: rgb(230, 246, 234);
     padding-top: 50px; 
-    border-right: 5px solid seagreen,
+    border-right: 5px solid seagreen;
 }
 
 .side-panel-right {
@@ -57,5 +57,5 @@ h2 {
     right: 0; 
     background-color: rgb(230, 246, 234);
     padding-top: 50px; 
-    border-left: 5px solid seagreen
+    border-left: 5px solid seagreen;
 }
