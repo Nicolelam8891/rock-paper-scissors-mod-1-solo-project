@@ -26,20 +26,29 @@
         <div>
             <h1>Rock, Paper, Scissors</h1>
         </div>
-        <div>
+        <section style="display:none">
             <h2 class="choose-container"><em>Choose your game!</em></h2>
             <button class ="classic-button">🪨CLASSIC📃
                 <p>rock > scissors <br> paper > rock <br> scissors > paper</p>
             </button>
             <button class ="difficult-button">🦎DIFFICULT👽
-                <p>rocks > scissors & lizard <br> paper > rock & alien <br> scissors > paper & lizard <br> lizard > paper & alien <br> alien > scissors & rock</p>
+                <p>rock > scissors & lizard <br> paper > rock & alien <br> scissors > paper & lizard <br> lizard > paper & alien <br> alien > scissors & rock</p>
+            </button> 
+        </section>
+        <section class="classic-icon-containers">
+            <!-- <h2 class="choose-container"><em>Choose your fighter!</em></h2> -->
+            <button class="rock-button">
+                <img src="assets/happy-rocks.png" class="fighter-icon" id="rock">
             </button>
-            
-        </div>
+            <button class="paper-button">
+                <img src="assets/happy-paper.png" class="fighter-icon" id="paper">
+            </button>
+            <button class="scissors-button">
+                <img src="assets/happy-scissors.png" class="fighter-icon" id="scissors">
+            </button>
+        </section>
     </header>
 </main>
- 
-    
     <script src="main.js"></script>  
 </body>
 </html>
