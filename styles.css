@@ -103,3 +103,26 @@ h2 {
     margin-top: 15px;
     text-align: center;
 }
+
+.classic-icon-containers {
+    margin: 50px auto;
+    margin-top: 180px;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+}
+
+.fighter-icon {
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    width: 27vh;
+    height: 27vh;
+}
+
+.rock-button, .paper-button, .scissors-button {
+    margin-right: 10px;
+    margin-left: 10px;
+    background-color: transparent;
+    border: none;
+}
