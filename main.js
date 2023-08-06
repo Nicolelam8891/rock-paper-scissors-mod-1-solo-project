@@ -141,6 +141,23 @@ function player1ChoosesPaper() {
     setTimeout(loadClassicGame, 2000);
 }
 
+function player1ChoosesScissors() {
+        player1Choice = "scissors"
+        player2Choice = getRandomIndex(classicGameArray)
+        if (player2Choice === "rock") {
+            chooseGameMessage.innerHTML  = `${gameObject.player2.token}${gameObject.player2.name} wins this round!${gameObject.player2.token}`;
+            resultsIcons.innerHTML = scissorsIcon + rockIcon;
+        } else if (player2Choice === "paper") {
+            chooseGameMessage.innerHTML  = `${gameObject.player1.token}${gameObject.player1.name} wins this round!${gameObject.player1.token}`;
+            resultsIcons.innerHTML = scissorsIcon + paperIcon;
+        } else {
+            calculateDraw(player1Choice);
+        }
+        classicButtonContainer.style.display = "none"
+        resultsIcons.style.display = "flex";
+        setTimeout(loadClassicGame, 2000);
+    }
+    
 function getRandomIndex(iconsArray) {
     var randomIndexNumber = Math.floor(Math.random() * iconsArray.length);
     return iconsArray[randomIndexNumber];
