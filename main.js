@@ -5,8 +5,12 @@ var player2;
 var gameObject;
 
 // DOM Query Selectors 👇
-var classicButtonContainer = document.querySelector(".classic-button");
-var difficultButtonContainer = document.querySelector(".difficult-button");
+var classicButton = document.querySelector(".classic-game-button");
+var difficultButton = document.querySelector(".difficult-game-button");
+
+var chooseGameMessage = document.querySelector("h2.choose-game-message");
+var chooseGameMode = document.querySelector(".choose-game-mode");
+var classicButtonContainer = document.querySelector(".classic-icon-container")
 
 var player1Emoji = document.querySelector(".player-1-emoji")
 var player2Emoji = document.querySelector(".player-2-emoji")
@@ -15,15 +19,21 @@ var player2Name = document.querySelector(".player2-name")
 var player1Score = document.querySelector(".player1-score")
 var player2Score = document.querySelector(".player2-score")
 
+var rockButton = document.querySelector(".rock-button")
+var paperButton = document.querySelector(".paper-button")
+var scissorsButton = document.querySelector(".scissors-button")
+
 // Event Listeners 👇
 window.addEventListener("load", function () {
     gameObject = createGame();
     updatePlayerInfo();
 });
 
-classicButtonContainer.addEventListener("click", function () {
-
+classicButton.addEventListener("click", function () {
+    loadClassicGame()
 });
+
+
 
 console.log("gameObject", gameObject)
 console.log("gameObject.player1", player1)
@@ -64,7 +74,9 @@ function updatePlayerInfo() {
 }
 
 function loadClassicGame() {
-    
+    chooseGameMessage.innerText = "Choose your fighter!"
+    chooseGameMode.style.display = "none"
+    classicButtonContainer.style.display = "block"
 }
 
 
