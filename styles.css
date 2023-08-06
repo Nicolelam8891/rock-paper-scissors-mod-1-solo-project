@@ -1,6 +1,6 @@
-*{
+/* *{
     border: 1px solid green
-}
+} */
 
 *{
     margin: 0; 
@@ -107,19 +107,18 @@ h2 {
 
 .classic-icon-container {
     margin-top: 50px; 
-    display: flex; 
     align-items: center;
     justify-content: center;
     margin-left: auto;
     margin-right: auto;
-    height: 100vh   
+    height: 27vh   
    
 }
 
 .fighter-icon {
     margin: 0 auto;
-    width: 27vh;
-    height: 27vh;
+    width: 24vh;
+    height: 24vh;
 }
 
 .fighterButton {
