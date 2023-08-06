@@ -47,8 +47,17 @@ classicButton.addEventListener("click", function () {
 
 rockButton.addEventListener("click", function() {
     player1ChoosesRock();
-    
 });
+
+paperButton.addEventListener("click", function() {
+    player1ChoosesPaper();
+});
+
+scissorsButton.addEventListener("click", function() {
+    player1ChoosesScissors();
+});
+    
+
 
 //Functions 👇
 function createGame() {
@@ -88,7 +97,7 @@ function loadClassicGame() {
     chooseGameMessage.innerText = "Choose your fighter!"
     chooseGameMode.style.display = "none"
     classicButtonContainer.style.display = "flex"
-    gameObject.classModeActive = true;
+    gameObject.classicModeActive = true;
     resultsIcons.style.display = "none";
 }
 
@@ -101,10 +110,10 @@ function player1ChoosesRock() {
     player1Choice = "rock"
     player2Choice = getRandomIndex(classicGameArray)
     if (player2Choice === "paper") {
-        chooseGameMessage.innerHTML = `${gameObject.player2.token}${gameObject.player2.name} wins this round!${gameObject.player2.token}`  
-        resultsIcons.innerHTML = rockIcon + paperIcon   
+        chooseGameMessage.innerHTML = `${gameObject.player2.token}${gameObject.player2.name} wins this round!${gameObject.player2.token}`;
+        resultsIcons.innerHTML = rockIcon + paperIcon; 
     } else if (player2Choice === "scissors") {
-        chooseGameMessage.innerHTML = `${gameObject.player1.token}${gameObject.player1.name} wins this round!${gameObject.player1.token}`
+        chooseGameMessage.innerHTML = `${gameObject.player1.token}${gameObject.player1.name} wins this round!${gameObject.player1.token}`;
         resultsIcons.innerHTML = rockIcon + scissorsIcon;
     } else {
         calculateDraw(player1Choice);
@@ -113,6 +122,23 @@ function player1ChoosesRock() {
     resultsIcons.style.display = "flex";
     setTimeout(loadClassicGame, 2000);
 
+}
+
+function player1ChoosesPaper() {
+    player1Choice = "paper"
+    player2Choice = getRandomIndex(classicGameArray)
+    if (player2Choice === "rock") {
+        chooseGameMessage.innerHTML  = `${gameObject.player1.token}${gameObject.player1.name} wins this round!${gameObject.player1.token}`;
+        resultsIcons.innerHTML = paperIcon + rockIcon;
+    } else if (player2Choice === "scissors") {
+        chooseGameMessage.innerHTML  = `${gameObject.player2.token}${gameObject.player2.name} wins this round!${gameObject.player2.token}`;
+        resultsIcons.innerHTML = paperIcon + scissorsIcon;
+    } else {
+        calculateDraw(player1Choice);
+    }
+    classicButtonContainer.style.display = "none"
+    resultsIcons.style.display = "flex";
+    setTimeout(loadClassicGame, 2000);
 }
 
 function getRandomIndex(iconsArray) {
