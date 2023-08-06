@@ -25,25 +25,24 @@
     <header>
         <div>
             <h1>Rock, Paper, Scissors</h1>
+            <h2 class="choose-game-message"><em>Choose your game!</em></h2>
         </div>
-        <section style="display:none">
-            <h2 class="choose-container"><em>Choose your game!</em></h2>
-            <button class ="classic-button">🪨CLASSIC📃
+        <section class="choose-game-mode" style="display:block">
+            <button class ="classic-game-button">🪨CLASSIC📃
                 <p>rock > scissors <br> paper > rock <br> scissors > paper</p>
             </button>
-            <button class ="difficult-button">🦎DIFFICULT👽
+            <button class ="difficult-game-button">🦎DIFFICULT👽
                 <p>rock > scissors & lizard <br> paper > rock & alien <br> scissors > paper & lizard <br> lizard > paper & alien <br> alien > scissors & rock</p>
             </button> 
         </section>
-        <section class="classic-icon-containers">
-            <!-- <h2 class="choose-container"><em>Choose your fighter!</em></h2> -->
-            <button class="rock-button">
+        <section class="classic-icon-container" style="display:none">
+            <button class="fighterButton" id="rock-button">
                 <img src="assets/happy-rocks.png" class="fighter-icon" id="rock">
             </button>
-            <button class="paper-button">
+            <button class="fighterButton" id="paper-button">
                 <img src="assets/happy-paper.png" class="fighter-icon" id="paper">
             </button>
-            <button class="scissors-button">
+            <button class="fighterButton" id="scissors-button">
                 <img src="assets/happy-scissors.png" class="fighter-icon" id="scissors">
             </button>
         </section>

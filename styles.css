@@ -1,6 +1,6 @@
-/* *{
+*{
     border: 1px solid green
-} */
+}
 
 *{
     margin: 0; 
@@ -8,7 +8,8 @@
 }
 
 body {
-    background-image: linear-gradient(to bottom, rgb(179, 219, 179), white);
+    background-image: linear-gradient(to top, rgb(179, 219, 179), white);
+    margin-bottom: 17%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -26,7 +27,7 @@ h1 {
 
 h2 {
     margin-top: 5px;
-    margin-bottom: 50px;
+    margin-bottom: 100px;
     margin-left: auto;
     margin-right: auto;
     text-align: center;
@@ -47,9 +48,9 @@ h2 {
     position: fixed;
     top: 0;
     left: 0; 
-    background-color: rgb(230, 246, 234);
+    background-image: linear-gradient(to top, rgb(179, 219, 179), white);
     padding-top: 50px; 
-    border-right: 5px solid seagreen;
+    border-right: 2px solid rgb(201, 233, 215);
 }
 
 .side-panel-right {
@@ -63,14 +64,14 @@ h2 {
     position: fixed;
     top: 0;
     right: 0; 
-    background-color: rgb(230, 246, 234);
+    background-image: linear-gradient(to top, rgb(179, 219, 179), white);
     padding-top: 50px; 
-    border-left: 5px solid seagreen;
+    border-left: 2px solid rgb(201, 233, 215);
 }
 
-.classic-button {
-    margin: 50px auto;
-    margin-top: 100px;
+.classic-game-button {
+    margin-left: auto;
+    margin-right: auto;
     width: 37vh;
     height: 20vh;
     background-color: rgb(208, 242, 208);
@@ -84,7 +85,7 @@ h2 {
     align-items: center;
 }
 
-.difficult-button {
+.difficult-game-button {
     margin: 10px auto;
     width: 37vh;
     height: 27vh;
@@ -104,25 +105,39 @@ h2 {
     text-align: center;
 }
 
-.classic-icon-containers {
-    margin: 50px auto;
-    margin-top: 180px;
+.classic-icon-container {
+    margin-top: 50px; 
     display: flex; 
     align-items: center;
     justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    height: 100vh   
+   
 }
 
 .fighter-icon {
-    display: flex; 
-    justify-content: center;
-    align-items: center;
+    margin: 0 auto;
     width: 27vh;
     height: 27vh;
 }
 
-.rock-button, .paper-button, .scissors-button {
+.fighterButton {
     margin-right: 10px;
     margin-left: 10px;
     background-color: transparent;
-    border: none;
+    border: none; 
 }
+
+.fighterButton:hover  {
+    background-color: rgb(239, 245, 241);
+} 
+
+.fighterButton:active {
+    background-color: rgb(203, 228, 204);
+    transform: translateY(4px);
+}
+
+
+
+
