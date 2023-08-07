@@ -20,8 +20,7 @@ var player1Name = document.querySelector(".player1-name");
 var player2Name = document.querySelector(".player2-name");
 var player1Score = document.querySelector(".player1-score");
 var player2Score = document.querySelector(".player2-score");
-var classicButton = document.querySelector(".classic-game-button");
-var difficultButton = document.querySelector(".difficult-game-button");
+
 var changeGameButton = document.querySelector(".change-game-button");
 var chooseGameMessage = document.querySelector("h2.choose-game-message");
 var classicButtonContainer = document.querySelector(".classic-icon-container");
@@ -42,12 +41,15 @@ window.addEventListener("load", function () {
     gameObject = createGame();
     updatePlayerInfo();
 });
-classicButton.addEventListener("click", function () {
-    loadClassicGame();
+
+chooseGameMode.addEventListener("click", function (e) {
+    if (e.target.classList.contains("classic-game-button")) {
+        loadClassicGame();
+    } else if (e.target.classList.contains("difficult-game-button")) {
+        loadDifficultGame();    
+    }
 });
-difficultButton.addEventListener("click", function(){
-    loadDifficultGame();
-})
+
 changeGameButton.addEventListener("click", function() {
     loadHomePage();
 });
