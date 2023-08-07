@@ -42,9 +42,7 @@ var resultsIcons = document.querySelector(".results-icons");
 window.addEventListener("load", function () {
     gameObject = createGame();
     updatePlayerInfo();
-    
 });
-
 classicButton.addEventListener("click", function () {
     loadClassicGame();
 });
@@ -157,32 +155,51 @@ function takeTurns() {
     return player2Choice;
 }
 
-function player1ChoosesRock() {
-    player1Choice = "rock"
-    player2Choice = takeTurns();
-    if (player2Choice === "paper") {
-        chooseGameMessage.innerHTML = `${gameObject.player2.token}${gameObject.player2.name} wins this round!${gameObject.player2.token}`;
-        resultsIcons.innerHTML = rockIcon + paperIcon; 
-        gameObject.player2.wins++
-        updatePlayerInfo();       
-    } else if (player2Choice === "scissors") {
-        chooseGameMessage.innerHTML = `${gameObject.player1.token}${gameObject.player1.name} wins this round!${gameObject.player1.token}`;
-        resultsIcons.innerHTML = rockIcon + scissorsIcon;
+function player2WinsMessage() {
+    chooseGameMessage.innerHTML = `${gameObject.player2.token}${gameObject.player2.name} wins this round!${gameObject.player2.token}`;
+}
+function player1WinsMessage() {
+    chooseGameMessage.innerHTML = `${gameObject.player1.token}${gameObject.player1.name} wins this round!${gameObject.player1.token}`;
+}
+
+function determineWinner(player1Choice, player2Choice) {
+    var scissorsLizardCombo =  (player2Choice === "scissors" || player2Choice === "lizard");
+    var rockAlienCombo = (player2Choice === "rock" || player2Choice === "alien");
+    var paperLizardCombo = (player2Choice === "paper" || player2Choice === "lizard");
+    var paperAlienCombo = (player2Choice === "paper" || player2Choice === "alien");
+    var scissorsRockCombo = (player2Choice === "scissors" || player2Choice === "rock");
+
+    if (player1Choice === player2Choice) {
+        calculateDraw();
+    } else if (
+        (player1Choice === "rock" && scissorsLizardCombo) ||
+        (player1Choice === "paper" && rockAlienCombo) ||
+        (player1Choice === "scissors" && paperLizardCombo) ||
+        (player1Choice === "lizard" && paperAlienCombo) ||
+        (player1Choice === "alien" && scissorsRockCombo) 
+       ) {
         gameObject.player1.wins++
-        updatePlayerInfo();     
-    } else if (player2Choice === "lizard") {
-       chooseGameMessage.innerHTML = `${gameObject.player1.token}${gameObject.player1.name} wins this round!${gameObject.player1.token}`;
-       resultsIcons.innerHTML = rockIcon + lizardIcon;
-       gameObject.player1.wins++
-       updatePlayerInfo();
-    } else if (player2Choice === "alien") {
-        chooseGameMessage.innerHTML = `${gameObject.player2.token}${gameObject.player2.name} wins this round!${gameObject.player2.token}`;
-        resultsIcons.innerHTML = rockIcon + alienIcon;
-        gameObject.player2.wins++
+        player1WinsMessage();
         updatePlayerInfo();
-    } else {
-        calculateDraw(player1Choice);
-    }
+       } else if (
+        (player1Choice === "rock" && paperAlienCombo) || 
+        (player1Choice === "paper" && scissorsLizardCombo) || 
+        (player1Choice === "scissors" && rockAlienCombo) || 
+        (player1Choice === "lizard" && rockScissorsCombo) || 
+        (player1Choice === "alien" && lizardPaperCombo)
+       ) {
+        gameObject.player2.wins++
+        player2WinsMessage();
+        updatePlayerInfo();
+       }
+}
+function player1ChoosesRock() {
+    player1Choice = "rock" 
+    player2Choice = takeTurns();
+    determineWinner(player1Choice, player2Choice);
+
+    resultsIcons.innerHTML = rockIcon
+
     classicButtonContainer.style.display = "none"
     difficultButtonContainer.style.display = "none"
     resultsIcons.style.display = "flex";
@@ -192,29 +209,8 @@ function player1ChoosesRock() {
 function player1ChoosesPaper() {
     player1Choice = "paper"
     player2Choice = takeTurns();
-    if (player2Choice === "rock") {
-        chooseGameMessage.innerHTML  = `${gameObject.player1.token}${gameObject.player1.name} wins this round!${gameObject.player1.token}`;
-        resultsIcons.innerHTML = paperIcon + rockIcon;
-        gameObject.player1.wins++
-        updatePlayerInfo();
-    } else if (player2Choice === "scissors") {
-        chooseGameMessage.innerHTML  = `${gameObject.player2.token}${gameObject.player2.name} wins this round!${gameObject.player2.token}`;
-        resultsIcons.innerHTML = paperIcon + scissorsIcon;
-        gameObject.player2.wins++
-        updatePlayerInfo();
-    } else if (player2Choice === "lizard") {
-        chooseGameMessage.innerHTML = `${gameObject.player2.token}${gameObject.player2.name} wins this round!${gameObject.player2.token}`;
-        resultsIcons.innerHTML = paperIcon + lizardIcon;
-        gameObject.player2.wins++
-        updatePlayerInfo();
-     } else if (player2Choice === "alien") {
-         chooseGameMessage.innerHTML = `${gameObject.player1.token}${gameObject.player1.name} wins this round!${gameObject.player1.token}`;
-         resultsIcons.innerHTML = paperIcon + alienIcon;
-         gameObject.player1.wins++
-         updatePlayerInfo();
-     } else {
-        calculateDraw(player1Choice);
-    }
+    determineWinner(player1Choice, player2Choice);
+
     classicButtonContainer.style.display = "none"
     difficultButtonContainer.style.display = "none"
     resultsIcons.style.display = "flex";
@@ -222,92 +218,38 @@ function player1ChoosesPaper() {
 }
 
 function player1ChoosesScissors() {
-        player1Choice = "scissors"
-        player2Choice = takeTurns();
-        if (player2Choice === "rock") {
-            chooseGameMessage.innerHTML  = `${gameObject.player2.token}${gameObject.player2.name} wins this round!${gameObject.player2.token}`;
-            resultsIcons.innerHTML = scissorsIcon + rockIcon;
-            gameObject.player2.wins++
-            updatePlayerInfo();
-        } else if (player2Choice === "paper") {
-            chooseGameMessage.innerHTML  = `${gameObject.player1.token}${gameObject.player1.name} wins this round!${gameObject.player1.token}`;
-            resultsIcons.innerHTML = scissorsIcon + paperIcon;
-            gameObject.player1.wins++
-            updatePlayerInfo();
-        } else if (player2Choice === "lizard") {
-            chooseGameMessage.innerHTML = `${gameObject.player1.token}${gameObject.player1.name} wins this round!${gameObject.player1.token}`;
-            resultsIcons.innerHTML = scissorsIcon + lizardIcon;
-            gameObject.player1.wins++
-            updatePlayerInfo();
-         } else if (player2Choice === "alien") {
-             chooseGameMessage.innerHTML = `${gameObject.player2.token}${gameObject.player2.name} wins this round!${gameObject.player2.token}`;
-             resultsIcons.innerHTML = scissorsIcon + alienIcon;
-             gameObject.player2.wins++
-             updatePlayerInfo(); 
-         } else {
-            calculateDraw(player1Choice);
-        }
-        classicButtonContainer.style.display = "none"
-        difficultButtonContainer.style.display = "none"
-        resultsIcons.style.display = "flex";
-        setTimeout(loadCorrectGameMode, 2000);
-    }
+    player1Choice = "scissors"
+    player2Choice = takeTurns();
+    determineWinner(player1Choice, player2Choice);
+        
+    classicButtonContainer.style.display = "none"
+    difficultButtonContainer.style.display = "none"
+    resultsIcons.style.display = "flex";
+    setTimeout(loadCorrectGameMode, 2000);
+}
 
-    function player1ChoosesDifficultLizard() {
-        player1Choice = "lizard"
-        player2Choice = takeTurns();
-        if (player2Choice === "rock") {
-            chooseGameMessage.innerHTML = `${gameObject.player2.token}${gameObject.player2.name} wins this round!${gameObject.player2.token}`;
-            resultsIcons.innerHTML = lizardIcon + rockIcon;
-            gameObject.player2.wins++
-            updatePlayerInfo();
-        } else if (player2Choice === "paper") {
-            chooseGameMessage.innerHTML  = `${gameObject.player1.token}${gameObject.player1.name} wins this round!${gameObject.player1.token}`;
-            resultsIcons.innerHTML = lizardIcon + paperIcon;
-            gameObject.player1.wins++
-            updatePlayerInfo();
-        } else if (player2Choice === "scissors") {
-            chooseGameMessage.innerHTML  = `${gameObject.player2.token}${gameObject.player2.name} wins this round!${gameObject.player2.token}`;
-            resultsIcons.innerHTML = lizardIcon + scissorsIcon;
-            gameObject.player2.wins++
-            updatePlayerInfo();
-        } else {
-            calculateDraw(player1Choice);
-        }
-        classicButtonContainer.style.display = "none"
-        difficultButtonContainer.style.display = "none"
-        resultsIcons.style.display = "flex";
-        setTimeout(loadCorrectGameMode, 2000);
-    }
+function player1ChoosesDifficultLizard() {
+    player1Choice = "lizard"
+    player2Choice = takeTurns();
+    determineWinner(player1Choice, player2Choice);
 
-    function player1ChoosesDifficultAlien() {
-        player1Choice = "alien"
-        player2Choice = takeTurns();
-        if (player2Choice === "rock") {
-            chooseGameMessage.innerHTML = `${gameObject.player1.token}${gameObject.player1.name} wins this round!${gameObject.player1.token}`;
-            resultsIcons.innerHTML = alienIcon + rockIcon;
-            gameObject.player1.wins++
-            updatePlayerInfo();
-        } else if (player2Choice === "paper") {
-            chooseGameMessage.innerHTML  = `${gameObject.player2.token}${gameObject.player2.name} wins this round!${gameObject.player2.token}`;
-            resultsIcons.innerHTML = alienIcon + paperIcon;
-            gameObject.player2.wins++
-            updatePlayerInfo();
-        } else if (player2Choice === "scissors") {
-            chooseGameMessage.innerHTML  = `${gameObject.player1.token}${gameObject.player1.name} wins this round!${gameObject.player1.token}`;
-            resultsIcons.innerHTML = alienIcon + scissorsIcon;
-            gameObject.player1.wins++
-            updatePlayerInfo();
-        } else {
-            calculateDraw(player1Choice);
-        }
-        classicButtonContainer.style.display = "none"
-        difficultButtonContainer.style.display = "none"
-        resultsIcons.style.display = "flex";
-        setTimeout(loadCorrectGameMode, 2000);
-    }
+    classicButtonContainer.style.display = "none"
+    difficultButtonContainer.style.display = "none"
+    resultsIcons.style.display = "flex";
+    setTimeout(loadCorrectGameMode, 2000);
+}
 
-    
+function player1ChoosesDifficultAlien() {
+    player1Choice = "alien"
+    player2Choice = takeTurns();
+    determineWinner(player1Choice, player2Choice);
+
+    classicButtonContainer.style.display = "none"
+    difficultButtonContainer.style.display = "none"
+    resultsIcons.style.display = "flex";
+    setTimeout(loadCorrectGameMode, 2000);
+}
+
 function getRandomIndex(iconsArray) {
     var randomIndexNumber = Math.floor(Math.random() * iconsArray.length);
     return iconsArray[randomIndexNumber];
