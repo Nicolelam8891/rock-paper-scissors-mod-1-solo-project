@@ -318,8 +318,9 @@ function calculateDraw(choice) {
             resultsIcons.innerHTML = paperIcon + paperIcon
         } else if (player1Choice === "scissors") {
             resultsIcons.innerHTML = scissorsIcon + scissorsIcon
+        } else if (player1Choice === "lizard") {
+            resultsIcons.innerHTML = lizardIcon + lizardIcon
+        } else if (player1Choice === "alien") {
+            resultsIcons.innerHTML = alienIcon + alienIcon
         }
     }
-
-
-
