@@ -13,9 +13,11 @@ var paperIcon = '<img src="assets/happy-paper.png" class="fighter-icon" id="pape
 var scissorsIcon = '<img src="assets/happy-scissors.png" class="fighter-icon" id="scissors">';
 
 
+
 // DOM Query Selectors 👇
 var classicButton = document.querySelector(".classic-game-button");
 var difficultButton = document.querySelector(".difficult-game-button");
+var changeGameButton = document.querySelector(".change-game-button");
 
 var chooseGameMessage = document.querySelector("h2.choose-game-message");
 var chooseGameMode = document.querySelector(".choose-game-mode");
@@ -42,7 +44,15 @@ window.addEventListener("load", function () {
 });
 
 classicButton.addEventListener("click", function () {
-    loadClassicGame()
+    loadClassicGame();
+});
+
+difficultButton.addEventListener("click", function(){
+    loadDifficultGame();
+})
+
+changeGameButton.addEventListener("click", function() {
+    loadHomePage();
 });
 
 rockButton.addEventListener("click", function() {
@@ -61,8 +71,8 @@ scissorsButton.addEventListener("click", function() {
 
 //Functions 👇
 function createGame() {
-    player1 = createPlayer("Player 1", "👩🏻", 5);
-    player2 = createPlayer("Player 2", "💻", 6);
+    player1 = createPlayer("Player 1", "🧝🏼‍♀️", 0);
+    player2 = createPlayer("Player 2", "💻", 0);
     
     var game = {
         player1: player1,
@@ -94,11 +104,22 @@ function updatePlayerInfo() {
 }
 
 function loadClassicGame() {
-    chooseGameMessage.innerText = "Choose your fighter!"
+    chooseGameMessage.innerHTML = "<em>Choose your fighter!</em>"
     chooseGameMode.style.display = "none"
     classicButtonContainer.style.display = "flex"
     gameObject.classicModeActive = true;
     resultsIcons.style.display = "none";
+    changeGameButton.style.display = "block";
+}
+
+function loadHomePage() {
+    gameObject.classicModeActive = false;
+    gameObject.difficultModeActive = false;
+    chooseGameMessage.innerHTML = "<em>Choose your game!</em>";
+    chooseGameMode.style.display = "block";
+    classicButtonContainer.style.display = "none";
+    resultsIcons.style.display = "none";
+    changeGameButton.style.display = "none";
 }
 
 function loadPlayer1Choice() {
