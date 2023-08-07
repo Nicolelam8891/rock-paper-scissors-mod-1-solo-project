@@ -70,12 +70,6 @@ paperButton.addEventListener("click", function() {
 scissorsButton.addEventListener("click", function() {
     player1ChoosesScissors();
 });
-lizardButton.addEventListener("click", function() {
-    player1ChoosesDifficultLizard();
-});
-alienButton.addEventListener("click", function() {
-    player1ChoosesDifficultAlien();
-});
 difficultRockButton.addEventListener("click", function() {
     player1ChoosesRock();
 });
@@ -84,6 +78,12 @@ difficultPaperButton.addEventListener("click", function() {
 });
 difficultScissorsButton.addEventListener("click", function() {
     player1ChoosesScissors();
+});
+lizardButton.addEventListener("click", function() {
+    player1ChoosesDifficultLizard();
+});
+alienButton.addEventListener("click", function() {
+    player1ChoosesDifficultAlien();
 });
 
 //Functions 👇
@@ -110,14 +110,12 @@ function createPlayer(name, token, wins) {
 }
 
 function updatePlayerInfo() {
-    player1Score.innerHTML = "Wins: " + gameObject.player1.wins;
-    player2Score.innerHTML = "Wins: " + gameObject.player2.wins;
-
-    player1Emoji.innerHTML = gameObject.player1.token;
-    player2Emoji.innerHTML = gameObject.player2.token;
-
     player1Name.innerHTML = gameObject.player1.name;
     player2Name.innerHTML = gameObject.player2.name;
+    player1Emoji.innerHTML = gameObject.player1.token;
+    player2Emoji.innerHTML = gameObject.player2.token;
+    player1Score.innerHTML = "Wins: " + gameObject.player1.wins;
+    player2Score.innerHTML = "Wins: " + gameObject.player2.wins;
 }
 
 function loadClassicGame() {
@@ -144,12 +142,9 @@ function loadHomePage() {
     chooseGameMessage.innerHTML = "<em>Choose your game!</em>";
     chooseGameMode.style.display = "block";
     classicButtonContainer.style.display = "none";
+    difficultButtonContainer.style.display = "none";
     resultsIcons.style.display = "none";
     changeGameButton.style.display = "none";
-}
-
-function loadPlayer1Choice() {
-    chooseGameMessage.innerText = 0;
 }
 
 function player2Selection() {
@@ -220,6 +215,7 @@ function player1ChoosesPaper() {
         calculateDraw(player1Choice);
     }
     classicButtonContainer.style.display = "none"
+    difficultButtonContainer.style.display = "none"
     resultsIcons.style.display = "flex";
     setTimeout(loadClassicGame, 2000);
 }
@@ -251,6 +247,7 @@ function player1ChoosesScissors() {
             calculateDraw(player1Choice);
         }
         classicButtonContainer.style.display = "none"
+        difficultButtonContainer.style.display = "none"
         resultsIcons.style.display = "flex";
         setTimeout(loadClassicGame, 2000);
     }
