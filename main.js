@@ -1,7 +1,6 @@
 // Global variables:
 var player1;
 var player2;
-var gameObject;
 var player1Choice; 
 var player2Choice;
 
@@ -109,24 +108,22 @@ function updatePlayerInfo() {
     player2Score.innerHTML = "Wins: " + gameObject.player2.wins;
 }
 
-function loadClassicGame() {
+function startRound() {
     chooseGameMessage.innerHTML = "<em>Choose your fighter!</em>"
     chooseGameMode.style.display = "none"
+    resultsIcons.style.display = "none";
+    changeGameButton.style.display = "block";
+}
+function loadClassicGame() {
     classicButtonContainer.style.display = "flex"
     gameObject.classicModeActive = true;
-    resultsIcons.style.display = "none";
-    changeGameButton.style.display = "block";
+    startRound();
 }
-
 function loadDifficultGame() {
-    chooseGameMessage.innerHTML = "<em>Choose your fighter!</em>"
-    chooseGameMode.style.display = "none"
     difficultButtonContainer.style.display = "flex"
     gameObject.difficultModeActive = true;
-    resultsIcons.style.display = "none";
-    changeGameButton.style.display = "block";
+    startRound();
 }
-
 function loadHomePage() {
     gameObject.classicModeActive = false;
     gameObject.difficultModeActive = false;
@@ -137,7 +134,6 @@ function loadHomePage() {
     resultsIcons.style.display = "none";
     changeGameButton.style.display = "none";
 }
-
 function loadCorrectGameMode() {
     if (gameObject.classicModeActive === true) {
         loadClassicGame();
@@ -161,7 +157,9 @@ function player2WinsMessage() {
 function player1WinsMessage() {
     chooseGameMessage.innerHTML = `${gameObject.player1.token}${gameObject.player1.name} wins this round!${gameObject.player1.token}`;
 }
-
+function calculateDraw(choice) {
+    chooseGameMessage.innerHTML = `😅It's a draw!😅`
+}
 function determineWinner(player1Choice, player2Choice) {
     var scissorsLizardCombo =  (player2Choice === "scissors" || player2Choice === "lizard");
     var rockAlienCombo = (player2Choice === "rock" || player2Choice === "alien");
@@ -185,87 +183,76 @@ function determineWinner(player1Choice, player2Choice) {
         (player1Choice === "rock" && paperAlienCombo) || 
         (player1Choice === "paper" && scissorsLizardCombo) || 
         (player1Choice === "scissors" && rockAlienCombo) || 
-        (player1Choice === "lizard" && rockScissorsCombo) || 
-        (player1Choice === "alien" && lizardPaperCombo)
+        (player1Choice === "lizard" && scissorsRockCombo) || 
+        (player1Choice === "alien" && paperLizardCombo)
        ) {
         gameObject.player2.wins++
         player2WinsMessage();
         updatePlayerInfo();
        }
 }
+function endsRound() {
+    classicButtonContainer.style.display = "none"
+    difficultButtonContainer.style.display = "none"
+    resultsIcons.style.display = "flex";
+    setTimeout(loadCorrectGameMode, 2000);
+}
 function player1ChoosesRock() {
     player1Choice = "rock" 
     player2Choice = takeTurns();
     determineWinner(player1Choice, player2Choice);
-
-    resultsIcons.innerHTML = rockIcon
-
-    classicButtonContainer.style.display = "none"
-    difficultButtonContainer.style.display = "none"
-    resultsIcons.style.display = "flex";
-    setTimeout(loadCorrectGameMode, 2000);
+    var computerIcon = getComputerIcon(player2Choice)
+    resultsIcons.innerHTML = rockIcon + computerIcon;
+    endsRound();
 }
-
 function player1ChoosesPaper() {
     player1Choice = "paper"
     player2Choice = takeTurns();
     determineWinner(player1Choice, player2Choice);
-
-    classicButtonContainer.style.display = "none"
-    difficultButtonContainer.style.display = "none"
-    resultsIcons.style.display = "flex";
-    setTimeout(loadCorrectGameMode, 2000);
+    var computerIcon = getComputerIcon(player2Choice)
+    resultsIcons.innerHTML = paperIcon + computerIcon;
+    endsRound();
 }
-
 function player1ChoosesScissors() {
     player1Choice = "scissors"
     player2Choice = takeTurns();
     determineWinner(player1Choice, player2Choice);
-        
-    classicButtonContainer.style.display = "none"
-    difficultButtonContainer.style.display = "none"
-    resultsIcons.style.display = "flex";
-    setTimeout(loadCorrectGameMode, 2000);
+    var computerIcon = getComputerIcon(player2Choice)
+    resultsIcons.innerHTML = scissorsIcon + computerIcon;    
+    endsRound();
 }
-
 function player1ChoosesDifficultLizard() {
     player1Choice = "lizard"
     player2Choice = takeTurns();
     determineWinner(player1Choice, player2Choice);
-
-    classicButtonContainer.style.display = "none"
-    difficultButtonContainer.style.display = "none"
-    resultsIcons.style.display = "flex";
-    setTimeout(loadCorrectGameMode, 2000);
+    var computerIcon = getComputerIcon(player2Choice)
+    resultsIcons.innerHTML = lizardIcon + computerIcon;
+    endsRound();
 }
-
 function player1ChoosesDifficultAlien() {
     player1Choice = "alien"
     player2Choice = takeTurns();
     determineWinner(player1Choice, player2Choice);
-
-    classicButtonContainer.style.display = "none"
-    difficultButtonContainer.style.display = "none"
-    resultsIcons.style.display = "flex";
-    setTimeout(loadCorrectGameMode, 2000);
+    var computerIcon = getComputerIcon(player2Choice)
+    resultsIcons.innerHTML = alienIcon + computerIcon;
+    endsRound();
 }
-
 function getRandomIndex(iconsArray) {
     var randomIndexNumber = Math.floor(Math.random() * iconsArray.length);
     return iconsArray[randomIndexNumber];
 }
-
-function calculateDraw(choice) {
-        chooseGameMessage.innerHTML = `😅It's a draw!😅`
-        if (player1Choice === "rock") {
-            resultsIcons.innerHTML = rockIcon + rockIcon
-        } else if (player1Choice === "paper") {
-            resultsIcons.innerHTML = paperIcon + paperIcon
-        } else if (player1Choice === "scissors") {
-            resultsIcons.innerHTML = scissorsIcon + scissorsIcon
-        } else if (player1Choice === "lizard") {
-            resultsIcons.innerHTML = lizardIcon + lizardIcon
-        } else if (player1Choice === "alien") {
-            resultsIcons.innerHTML = alienIcon + alienIcon
-        }
+function getComputerIcon(computerChoice) {
+    var computerIcon = '';
+    if (computerChoice === "rock") {
+       computerIcon = rockIcon;
+    } else if (computerChoice === "paper") {
+       computerIcon = paperIcon; 
+    } else if (computerChoice === "scissors") {
+        computerIcon = scissorsIcon; 
+    } else if (computerChoice === "lizard") {
+       computerIcon = lizardIcon;
+    } else if (computerChoice === "alien") {
+        computerIcon = alienIcon;
     }
+    return computerIcon;
+}
