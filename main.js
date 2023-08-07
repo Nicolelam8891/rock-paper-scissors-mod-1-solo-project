@@ -42,7 +42,6 @@ var difficultScissorsButton = document.querySelector("#difficult-scissors-button
 var lizardButton = document.querySelector("#difficult-lizard-button");
 var alienButton = document.querySelector("#difficult-alien-button");
 
-
 var resultsIcons = document.querySelector(".results-icons");
 
 // Event Listeners 👇
@@ -244,6 +243,33 @@ function player1ChoosesScissors() {
              gameObject.player2.wins++
              updatePlayerInfo(); 
          } else {
+            calculateDraw(player1Choice);
+        }
+        classicButtonContainer.style.display = "none"
+        difficultButtonContainer.style.display = "none"
+        resultsIcons.style.display = "flex";
+        setTimeout(loadClassicGame, 2000);
+    }
+
+    function player1ChoosesDifficultLizard() {
+        player1Choice = "lizard"
+        player2Choice = player2Selection();
+        if (player2Choice === "rock") {
+            chooseGameMessage.innerHTML = `${gameObject.player2.token}${gameObject.player2.name} wins this round!${gameObject.player2.token}`;
+            resultsIcons.innerHTML = lizardIcon + rockIcon;
+            gameObject.player2.wins++
+            updatePlayerInfo();
+        } else if (player2Choice === "paper") {
+            chooseGameMessage.innerHTML  = `${gameObject.player1.token}${gameObject.player1.name} wins this round!${gameObject.player1.token}`;
+            resultsIcons.innerHTML = lizardIcon + paperIcon;
+            gameObject.player1.wins++
+            updatePlayerInfo();
+        } else if (player2Choice === "scissors") {
+            chooseGameMessage.innerHTML  = `${gameObject.player2.token}${gameObject.player2.name} wins this round!${gameObject.player2.token}`;
+            resultsIcons.innerHTML = lizardIcon + scissorsIcon;
+            gameObject.player2.wins++
+            updatePlayerInfo();
+        } else {
             calculateDraw(player1Choice);
         }
         classicButtonContainer.style.display = "none"
