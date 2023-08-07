@@ -12,8 +12,6 @@ var rockIcon = '<img src="assets/happy-rocks.png" class="fighter-icon" id="rock"
 var paperIcon = '<img src="assets/happy-paper.png" class="fighter-icon" id="paper">';
 var scissorsIcon = '<img src="assets/happy-scissors.png" class="fighter-icon" id="scissors">';
 
-
-
 // DOM Query Selectors 👇
 var classicButton = document.querySelector(".classic-game-button");
 var difficultButton = document.querySelector(".difficult-game-button");
@@ -22,6 +20,8 @@ var changeGameButton = document.querySelector(".change-game-button");
 var chooseGameMessage = document.querySelector("h2.choose-game-message");
 var chooseGameMode = document.querySelector(".choose-game-mode");
 var classicButtonContainer = document.querySelector(".classic-icon-container");
+var difficultButtonContainer = document.querySelector(".difficult-icon-container");
+
 
 var player1Emoji = document.querySelector(".player-1-emoji");
 var player2Emoji = document.querySelector(".player-2-emoji");
@@ -108,6 +108,15 @@ function loadClassicGame() {
     chooseGameMode.style.display = "none"
     classicButtonContainer.style.display = "flex"
     gameObject.classicModeActive = true;
+    resultsIcons.style.display = "none";
+    changeGameButton.style.display = "block";
+}
+
+function loadDifficultGame() {
+    chooseGameMessage.innerHTML = "<em>Choose your fighter!</em>"
+    chooseGameMode.style.display = "none"
+    difficultButtonContainer.style.display = "flex"
+    gameObject.difficultModeActive = true;
     resultsIcons.style.display = "none";
     changeGameButton.style.display = "block";
 }
