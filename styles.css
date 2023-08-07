@@ -118,7 +118,7 @@ h2 {
     text-align: center;
 }
 
-.classic-icon-container {
+.classic-icon-container, .difficult-icon-container {
     margin-top: 50px; 
     align-items: center;
     justify-content: center;
@@ -128,13 +128,13 @@ h2 {
    
 }
 
-.fighter-icon {
+.fighter-icon, .difficult-fighter-icon {
     margin: 0 auto;
     width: 24vh;
     height: 24vh;
 }
 
-.fighterButton {
+.fighterButton, .difficultFighterButton {
     margin-right: 10px;
     margin-left: 10px;
     background-color: transparent;
