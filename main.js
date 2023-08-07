@@ -88,7 +88,7 @@ alienButton.addEventListener("click", function() {
 //Functions 👇
 function createGame() {
     player1 = createPlayer("Player 1", "🧝🏼‍♀️", 0);
-    player2 = createPlayer("Player 2", "💻", 0);
+    player2 = createPlayer("Computer", "💻", 0);
     
     var game = {
         player1: player1,
@@ -146,6 +146,14 @@ function loadHomePage() {
     changeGameButton.style.display = "none";
 }
 
+function loadCorrectGameMode() {
+    if (gameObject.classicModeActive === true) {
+        loadClassicGame();
+    } else if (gameObject.difficultModeActive === true) {
+        loadDifficultGame();
+    }
+}
+
 function player2Selection() {
     if (gameObject.classicModeActive === true) {
         player2Choice = getRandomIndex(classicGameArray);
@@ -184,7 +192,7 @@ function player1ChoosesRock() {
     classicButtonContainer.style.display = "none"
     difficultButtonContainer.style.display = "none"
     resultsIcons.style.display = "flex";
-    setTimeout(loadClassicGame, 2000);
+    setTimeout(loadCorrectGameMode, 2000);
 }
 
 function player1ChoosesPaper() {
@@ -216,7 +224,7 @@ function player1ChoosesPaper() {
     classicButtonContainer.style.display = "none"
     difficultButtonContainer.style.display = "none"
     resultsIcons.style.display = "flex";
-    setTimeout(loadClassicGame, 2000);
+    setTimeout(loadCorrectGameMode, 2000);
 }
 
 function player1ChoosesScissors() {
@@ -248,7 +256,7 @@ function player1ChoosesScissors() {
         classicButtonContainer.style.display = "none"
         difficultButtonContainer.style.display = "none"
         resultsIcons.style.display = "flex";
-        setTimeout(loadClassicGame, 2000);
+        setTimeout(loadCorrectGameMode, 2000);
     }
 
     function player1ChoosesDifficultLizard() {
@@ -275,7 +283,7 @@ function player1ChoosesScissors() {
         classicButtonContainer.style.display = "none"
         difficultButtonContainer.style.display = "none"
         resultsIcons.style.display = "flex";
-        setTimeout(loadClassicGame, 2000);
+        setTimeout(loadCorrectGameMode, 2000);
     }
 
     function player1ChoosesDifficultAlien() {
@@ -302,8 +310,9 @@ function player1ChoosesScissors() {
         classicButtonContainer.style.display = "none"
         difficultButtonContainer.style.display = "none"
         resultsIcons.style.display = "flex";
-        setTimeout(loadClassicGame, 2000);
+        setTimeout(loadCorrectGameMode, 2000);
     }
+
     
 function getRandomIndex(iconsArray) {
     var randomIndexNumber = Math.floor(Math.random() * iconsArray.length);
