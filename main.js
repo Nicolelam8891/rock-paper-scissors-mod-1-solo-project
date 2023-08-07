@@ -133,9 +133,13 @@ function player1ChoosesRock() {
     if (player2Choice === "paper") {
         chooseGameMessage.innerHTML = `${gameObject.player2.token}${gameObject.player2.name} wins this round!${gameObject.player2.token}`;
         resultsIcons.innerHTML = rockIcon + paperIcon; 
+        gameObject.player2.wins++
+        updatePlayerInfo();
     } else if (player2Choice === "scissors") {
         chooseGameMessage.innerHTML = `${gameObject.player1.token}${gameObject.player1.name} wins this round!${gameObject.player1.token}`;
         resultsIcons.innerHTML = rockIcon + scissorsIcon;
+        gameObject.player1.wins++
+        updatePlayerInfo();
     } else {
         calculateDraw(player1Choice);
     }
@@ -151,9 +155,13 @@ function player1ChoosesPaper() {
     if (player2Choice === "rock") {
         chooseGameMessage.innerHTML  = `${gameObject.player1.token}${gameObject.player1.name} wins this round!${gameObject.player1.token}`;
         resultsIcons.innerHTML = paperIcon + rockIcon;
+        gameObject.player1.wins++
+        updatePlayerInfo();
     } else if (player2Choice === "scissors") {
         chooseGameMessage.innerHTML  = `${gameObject.player2.token}${gameObject.player2.name} wins this round!${gameObject.player2.token}`;
         resultsIcons.innerHTML = paperIcon + scissorsIcon;
+        gameObject.player2.wins++
+        updatePlayerInfo();
     } else {
         calculateDraw(player1Choice);
     }
@@ -168,9 +176,13 @@ function player1ChoosesScissors() {
         if (player2Choice === "rock") {
             chooseGameMessage.innerHTML  = `${gameObject.player2.token}${gameObject.player2.name} wins this round!${gameObject.player2.token}`;
             resultsIcons.innerHTML = scissorsIcon + rockIcon;
+            gameObject.player2.wins++
+            updatePlayerInfo();
         } else if (player2Choice === "paper") {
             chooseGameMessage.innerHTML  = `${gameObject.player1.token}${gameObject.player1.name} wins this round!${gameObject.player1.token}`;
             resultsIcons.innerHTML = scissorsIcon + paperIcon;
+            gameObject.player1.wins++
+            updatePlayerInfo();
         } else {
             calculateDraw(player1Choice);
         }
