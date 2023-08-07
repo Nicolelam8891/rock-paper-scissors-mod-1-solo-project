@@ -11,6 +11,8 @@ var difficultGameArray = ["rock", "paper", "scissors", "lizard", "alien"]
 var rockIcon = '<img src="assets/happy-rocks.png" class="fighter-icon" id="rock">';
 var paperIcon = '<img src="assets/happy-paper.png" class="fighter-icon" id="paper">';
 var scissorsIcon = '<img src="assets/happy-scissors.png" class="fighter-icon" id="scissors">';
+var lizardIcon = '<img src="assets/lizard.png" class="difficult-fighter-icon" id="difficult-lizard">';
+var alienIcon = '<img src="assets/happy-alien.png" class="difficult-fighter-icon" id="difficult-alien">';
 
 // DOM Query Selectors 👇
 var classicButton = document.querySelector(".classic-game-button");
@@ -33,6 +35,9 @@ var player2Score = document.querySelector(".player2-score");
 var rockButton = document.querySelector("#rock-button");
 var paperButton = document.querySelector("#paper-button");
 var scissorsButton = document.querySelector("#scissors-button");
+var lizardButton = document.querySelector("#difficult-lizard-button");
+var alienButton = document.querySelector("#difficult-alien-button");
+
 
 var resultsIcons = document.querySelector(".results-icons");
 
@@ -65,6 +70,10 @@ paperButton.addEventListener("click", function() {
 
 scissorsButton.addEventListener("click", function() {
     player1ChoosesScissors();
+});
+
+lizardButton.addEventListener("click", function() {
+    player1ChoosesLizard();
 });
     
 
@@ -133,22 +142,43 @@ function loadHomePage() {
 
 function loadPlayer1Choice() {
     chooseGameMessage.innerText = 0;
-   
+}
+
+function player2Selection() {
+    if (classicModeActive === true) {
+        player2Choice = getRandomIndex(classicGameArray);
+    } else if (difficultModeActive === true) {
+        player2Choice = getRandomIndex(difficultGameArray);
+    }
+    return player2Choice;
 }
 
 function player1ChoosesRock() {
     player1Choice = "rock"
-    player2Choice = getRandomIndex(classicGameArray)
     if (player2Choice === "paper") {
         chooseGameMessage.innerHTML = `${gameObject.player2.token}${gameObject.player2.name} wins this round!${gameObject.player2.token}`;
         resultsIcons.innerHTML = rockIcon + paperIcon; 
         gameObject.player2.wins++
         updatePlayerInfo();
+        player2Selection();
     } else if (player2Choice === "scissors") {
         chooseGameMessage.innerHTML = `${gameObject.player1.token}${gameObject.player1.name} wins this round!${gameObject.player1.token}`;
         resultsIcons.innerHTML = rockIcon + scissorsIcon;
         gameObject.player1.wins++
         updatePlayerInfo();
+        player2Selection();
+    } else if (player2Choice === "lizard") {
+       chooseGameMessage.innerHTML = `${gameObject.player1.token}${gameObject.player1.name} wins this round!${gameObject.player1.token}`;
+       resultsIcons.innerHTML = rockIcon + lizardIcon;
+       gameObject.player1.wins++
+       updatePlayerInfo();
+       player2Selection();
+    } else if (player2Choice === "alien") {
+        chooseGameMessage.innerHTML = `${gameObject.player2.token}${gameObject.player2.name} wins this round!${gameObject.player2.token}`;
+        resultsIcons.innerHTML = rockIcon + alienIcon;
+        gameObject.player2.wins++
+        updatePlayerInfo();
+        player2Selection();
     } else {
         calculateDraw(player1Choice);
     }

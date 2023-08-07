@@ -141,11 +141,11 @@ h2 {
     border: none; 
 }
 
-.fighterButton:hover, .change-game-button:hover  {
+.fighterButton:hover, .change-game-button:hover, .difficult-fighter-icon:hover {
     background-color: rgb(239, 245, 241);
 } 
 
-.fighterButton:active, .change-game-button:hover {
+.fighterButton:active, .change-game-button:active, .difficult-fighter-icon:active {
     background-color: rgb(165, 197, 166);
     transform: translateY(4px);
 }
