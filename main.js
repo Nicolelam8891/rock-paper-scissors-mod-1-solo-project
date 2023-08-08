@@ -51,7 +51,7 @@ difficultButtonContainer.addEventListener("click", function (e) {
     }
 });
 changeGameButton.addEventListener("click", function() {
-    loadHomePage();
+    resetGame();
 });
 
 //Functions 👇
@@ -105,7 +105,7 @@ function loadDifficultGame() {
     gameObject.difficultModeActive = true;
     startRound();
 }
-function loadHomePage() {
+function resetGame() {
     chooseGameMessage.innerHTML = "<em>Choose your game!</em>";
     gameObject.classicModeActive = false;
     gameObject.difficultModeActive = false;
@@ -136,7 +136,7 @@ function player2WinsMessage() {
 function player1WinsMessage() {
     chooseGameMessage.innerHTML = `${gameObject.player1.token}${gameObject.player1.name} wins this round!${gameObject.player1.token}`;
 }
-function calculateDraw(choice) {
+function calculateDraw() {
     chooseGameMessage.innerHTML = `😅It's a draw!😅`
 }
 function determineWinner(player1Choice, player2Choice) {
