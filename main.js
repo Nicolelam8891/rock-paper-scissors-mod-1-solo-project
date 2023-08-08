@@ -23,12 +23,12 @@ var player2Score = document.querySelector(".player2-score");
 
 var changeGameButton = document.querySelector(".change-game-button");
 var chooseGameMessage = document.querySelector("h2.choose-game-message");
+
 var classicButtonContainer = document.querySelector(".classic-icon-container");
 var difficultButtonContainer = document.querySelector(".difficult-icon-container");
+
 var chooseGameMode = document.querySelector(".choose-game-mode");
-var rockButton = document.querySelector("#rock-button");
-var paperButton = document.querySelector("#paper-button");
-var scissorsButton = document.querySelector("#scissors-button");
+
 var difficultRockButton = document.querySelector("#difficult-rock-button");
 var difficultPaperButton = document.querySelector("#difficult-paper-button");
 var difficultScissorsButton = document.querySelector("#difficult-scissors-button");
@@ -50,18 +50,22 @@ chooseGameMode.addEventListener("click", function (e) {
     }
 });
 
+classicButtonContainer.addEventListener("click", function (e) {
+    if (e.target.id === "rock" || e.target.id === "rock-button") {
+        player1ChoosesRock();
+    } else if (e.target.id === "paper" || e.target.id === "paper-button") {
+        player1ChoosesPaper();
+    } else if (e.target.id === "scissors" || e.target.id === "scissors-button") {
+        player1ChoosesScissors();
+    }
+});
+
+
+
 changeGameButton.addEventListener("click", function() {
     loadHomePage();
 });
-rockButton.addEventListener("click", function() {
-    player1ChoosesRock();
-});
-paperButton.addEventListener("click", function() {
-    player1ChoosesPaper();
-});
-scissorsButton.addEventListener("click", function() {
-    player1ChoosesScissors();
-});
+
 difficultRockButton.addEventListener("click", function() {
     player1ChoosesRock();
 });
