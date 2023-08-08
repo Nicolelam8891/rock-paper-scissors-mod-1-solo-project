@@ -28,12 +28,6 @@ var classicButtonContainer = document.querySelector(".classic-icon-container");
 var difficultButtonContainer = document.querySelector(".difficult-icon-container");
 
 var chooseGameMode = document.querySelector(".choose-game-mode");
-
-var difficultRockButton = document.querySelector("#difficult-rock-button");
-var difficultPaperButton = document.querySelector("#difficult-paper-button");
-var difficultScissorsButton = document.querySelector("#difficult-scissors-button");
-var lizardButton = document.querySelector("#difficult-lizard-button");
-var alienButton = document.querySelector("#difficult-alien-button");
 var resultsIcons = document.querySelector(".results-icons");
 
 // Event Listeners 👇
@@ -41,7 +35,6 @@ window.addEventListener("load", function () {
     gameObject = createGame();
     updatePlayerInfo();
 });
-
 chooseGameMode.addEventListener("click", function (e) {
     if (e.target.classList.contains("classic-game-button")) {
         loadClassicGame();
@@ -49,7 +42,6 @@ chooseGameMode.addEventListener("click", function (e) {
         loadDifficultGame();    
     }
 });
-
 classicButtonContainer.addEventListener("click", function (e) {
     if (e.target.id === "rock" || e.target.id === "rock-button") {
         player1ChoosesRock();
@@ -59,27 +51,21 @@ classicButtonContainer.addEventListener("click", function (e) {
         player1ChoosesScissors();
     }
 });
-
-
-
+difficultButtonContainer.addEventListener("click", function (e) {
+    if (e.target.id === "difficult-rock-button" || e.target.id === "difficult-rock") {
+        player1ChoosesRock();
+    } else if (e.target.id === "difficult-paper-button" || e.target.id === "difficult-paper") {
+        player1ChoosesPaper();
+    } else if (e.target.id === "difficult-scissors-button" || e.target.id === "difficult-scissors") {
+        player1ChoosesScissors();
+    } else if (e.target.id === "difficult-lizard-button" || e.target.id === "difficult-lizard") {
+        player1ChoosesDifficultLizard();
+    } else if (e.target.id === "difficult-alien-button" || e.target.id === "difficult-alien") {
+        player1ChoosesDifficultAlien();
+    }
+});
 changeGameButton.addEventListener("click", function() {
     loadHomePage();
-});
-
-difficultRockButton.addEventListener("click", function() {
-    player1ChoosesRock();
-});
-difficultPaperButton.addEventListener("click", function() {
-    player1ChoosesPaper();
-});
-difficultScissorsButton.addEventListener("click", function() {
-    player1ChoosesScissors();
-});
-lizardButton.addEventListener("click", function() {
-    player1ChoosesDifficultLizard();
-});
-alienButton.addEventListener("click", function() {
-    player1ChoosesDifficultAlien();
 });
 
 //Functions 👇
