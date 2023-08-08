@@ -8,7 +8,9 @@
 
 ## Preview of App:
 Screenshot
+![Screen Shot 2023-08-08 at 3 59 29 PM](https://github.com/Nicolelam8891/rock_paper_scissors/assets/132624450/9c07012f-35b3-4496-bfb8-b8a5843bd6fc)
 GIF
+![RockPaperScissorsFinal](https://github.com/Nicolelam8891/rock_paper_scissors/assets/132624450/326ffef1-68df-4877-831f-3fbe1be78fe1)
 
 ## Context:
 Final solo project, created from scatch within a week. A planning document of an outline of my anticipated progress throughout the project is attached. 
