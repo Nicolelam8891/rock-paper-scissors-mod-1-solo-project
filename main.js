@@ -1,6 +1,6 @@
 // Global variables 👇
-var classicGameArray = ["rock", "paper", "scissors"]
-var difficultGameArray = ["rock", "paper", "scissors", "lizard", "alien"]
+var classicGameArray = ["rock", "paper", "scissors"];
+var difficultGameArray = ["rock", "paper", "scissors", "lizard", "alien"];
 
 var rockIcon = '<img src="assets/happy-rocks.png" class="fighter-icon" id="rock">';
 var paperIcon = '<img src="assets/happy-paper.png" class="fighter-icon" id="paper">';
@@ -97,20 +97,20 @@ function updatePlayerInfo() {
 }
 
 function startRound() {
-    chooseGameMessage.innerHTML = "<em>Choose your fighter!</em>"
-    chooseGameMode.style.display = "none"
+    chooseGameMessage.innerHTML = "<em>Choose your fighter!</em>";
+    chooseGameMode.style.display = "none";
     resultsIcons.style.display = "none";
     changeGameButton.style.display = "block";
 }
 
 function loadClassicGame() {
-    classicButtonContainer.style.display = "flex"
+    classicButtonContainer.style.display = "flex";
     gameObject.classicModeActive = true;
     startRound();
 }
 
 function loadDifficultGame() {
-    difficultButtonContainer.style.display = "flex"
+    difficultButtonContainer.style.display = "flex";
     gameObject.difficultModeActive = true;
     startRound();
 }
@@ -152,7 +152,7 @@ function player1WinsMessage() {
 }
 
 function calculateDraw() {
-    chooseGameMessage.innerHTML = `😅It's a draw!😅`
+    chooseGameMessage.innerHTML = `😅It's a draw!😅`;
 }
 
 function determineWinner(player1Choice, player2Choice) {
@@ -171,7 +171,7 @@ function determineWinner(player1Choice, player2Choice) {
         (player1Choice === "lizard" && paperAlienCombo) ||
         (player1Choice === "alien" && scissorsRockCombo) 
        ) {
-        gameObject.player1.wins++
+        gameObject.player1.wins++;
         player1WinsMessage();
         updatePlayerInfo();
        } else if (
@@ -181,60 +181,60 @@ function determineWinner(player1Choice, player2Choice) {
         (player1Choice === "lizard" && scissorsRockCombo) || 
         (player1Choice === "alien" && paperLizardCombo)
        ) {
-        gameObject.player2.wins++
+        gameObject.player2.wins++;
         player2WinsMessage();
         updatePlayerInfo();
        }
 }
 
 function endsRound() {
-    classicButtonContainer.style.display = "none"
-    difficultButtonContainer.style.display = "none"
+    classicButtonContainer.style.display = "none";
+    difficultButtonContainer.style.display = "none";
     resultsIcons.style.display = "flex";
     setTimeout(loadCorrectGameMode, 2000);
 }
 
 function player1ChoosesRock() {
-    var player1Choice = "rock" 
+    var player1Choice = "rock";
     var player2Choice = takeTurns();
     determineWinner(player1Choice, player2Choice);
-    var computerIcon = getComputerIcon(player2Choice)
+    var computerIcon = getComputerIcon(player2Choice);
     resultsIcons.innerHTML = rockIcon + computerIcon;
     endsRound();
 }
 
 function player1ChoosesPaper() {
-    var player1Choice = "paper"
+    var player1Choice = "paper";
     var player2Choice = takeTurns();
     determineWinner(player1Choice, player2Choice);
-    var computerIcon = getComputerIcon(player2Choice)
+    var computerIcon = getComputerIcon(player2Choice);
     resultsIcons.innerHTML = paperIcon + computerIcon;
     endsRound();
 }
 
 function player1ChoosesScissors() {
-    var player1Choice = "scissors"
+    var player1Choice = "scissors";
     var player2Choice = takeTurns();
     determineWinner(player1Choice, player2Choice);
-    var computerIcon = getComputerIcon(player2Choice)
+    var computerIcon = getComputerIcon(player2Choice);
     resultsIcons.innerHTML = scissorsIcon + computerIcon;    
     endsRound();
 }
 
 function player1ChoosesDifficultLizard() {
-    var player1Choice = "lizard"
+    var player1Choice = "lizard";
     var player2Choice = takeTurns();
     determineWinner(player1Choice, player2Choice);
-    var computerIcon = getComputerIcon(player2Choice)
+    var computerIcon = getComputerIcon(player2Choice);
     resultsIcons.innerHTML = lizardIcon + computerIcon;
     endsRound();
 }
 
 function player1ChoosesDifficultAlien() {
-    var player1Choice = "alien"
+    var player1Choice = "alien";
     var player2Choice = takeTurns();
     determineWinner(player1Choice, player2Choice);
-    var computerIcon = getComputerIcon(player2Choice)
+    var computerIcon = getComputerIcon(player2Choice);
     resultsIcons.innerHTML = alienIcon + computerIcon;
     endsRound();
 }
