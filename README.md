@@ -8,6 +8,7 @@
 
 ## Preview of App:
 Screenshot
+GIF
 
 ## Context:
 Final solo project, created from scatch within a week. A planning document of an outline of my anticipated progress throughout the project is attached. 
