@@ -1,4 +1,4 @@
-// Global variables:
+// Global variables 👇
 var classicGameArray = ["rock", "paper", "scissors"]
 var difficultGameArray = ["rock", "paper", "scissors", "lizard", "alien"]
 
@@ -20,7 +20,8 @@ var resultsIcons = document.querySelector(".results-icons");
 window.addEventListener("load", function () {
     gameObject = createGame();
     updatePlayerInfo();
-});
+}); 
+
 chooseGameMode.addEventListener("click", function (e) {
     if (e.target.classList.contains("classic-game-button")) {
         loadClassicGame();
@@ -28,6 +29,7 @@ chooseGameMode.addEventListener("click", function (e) {
         loadDifficultGame();    
     }
 });
+
 classicButtonContainer.addEventListener("click", function (e) {
     if (e.target.id === "rock" || e.target.id === "rock-button") {
         player1ChoosesRock();
@@ -37,6 +39,7 @@ classicButtonContainer.addEventListener("click", function (e) {
         player1ChoosesScissors();
     }
 });
+
 difficultButtonContainer.addEventListener("click", function (e) {
     if (e.target.id === "difficult-rock-button" || e.target.id === "difficult-rock") {
         player1ChoosesRock();
@@ -50,6 +53,7 @@ difficultButtonContainer.addEventListener("click", function (e) {
         player1ChoosesDifficultAlien();
     }
 });
+
 changeGameButton.addEventListener("click", function() {
     resetGame();
 });
@@ -67,6 +71,7 @@ function createGame() {
     }
     return game;
 }
+
 function createPlayer(name, token, wins) {
     var player = {
         name: name,
@@ -75,6 +80,7 @@ function createPlayer(name, token, wins) {
     }
     return player;
 }
+
 function updatePlayerInfo() {
     var player1Emoji = document.querySelector(".player-1-emoji");
     var player2Emoji = document.querySelector(".player-2-emoji");
@@ -89,22 +95,26 @@ function updatePlayerInfo() {
     player1Score.innerHTML = "Wins: " + gameObject.player1.wins;
     player2Score.innerHTML = "Wins: " + gameObject.player2.wins;
 }
+
 function startRound() {
     chooseGameMessage.innerHTML = "<em>Choose your fighter!</em>"
     chooseGameMode.style.display = "none"
     resultsIcons.style.display = "none";
     changeGameButton.style.display = "block";
 }
+
 function loadClassicGame() {
     classicButtonContainer.style.display = "flex"
     gameObject.classicModeActive = true;
     startRound();
 }
+
 function loadDifficultGame() {
     difficultButtonContainer.style.display = "flex"
     gameObject.difficultModeActive = true;
     startRound();
 }
+
 function resetGame() {
     chooseGameMessage.innerHTML = "<em>Choose your game!</em>";
     gameObject.classicModeActive = false;
@@ -115,6 +125,7 @@ function resetGame() {
     resultsIcons.style.display = "none";
     changeGameButton.style.display = "none";
 }
+
 function loadCorrectGameMode() {
     if (gameObject.classicModeActive === true) {
         loadClassicGame();
@@ -122,6 +133,7 @@ function loadCorrectGameMode() {
         loadDifficultGame();
     }
 }
+
 function takeTurns() {
     if (gameObject.classicModeActive === true) {
         player2Choice = getRandomIndex(classicGameArray);
@@ -130,15 +142,19 @@ function takeTurns() {
     }
     return player2Choice;
 }
+
 function player2WinsMessage() {
     chooseGameMessage.innerHTML = `${gameObject.player2.token}${gameObject.player2.name} wins this round!${gameObject.player2.token}`;
 }
+
 function player1WinsMessage() {
     chooseGameMessage.innerHTML = `${gameObject.player1.token}${gameObject.player1.name} wins this round!${gameObject.player1.token}`;
 }
+
 function calculateDraw() {
     chooseGameMessage.innerHTML = `😅It's a draw!😅`
 }
+
 function determineWinner(player1Choice, player2Choice) {
     var scissorsLizardCombo =  (player2Choice === "scissors" || player2Choice === "lizard");
     var rockAlienCombo = (player2Choice === "rock" || player2Choice === "alien");
@@ -170,12 +186,14 @@ function determineWinner(player1Choice, player2Choice) {
         updatePlayerInfo();
        }
 }
+
 function endsRound() {
     classicButtonContainer.style.display = "none"
     difficultButtonContainer.style.display = "none"
     resultsIcons.style.display = "flex";
     setTimeout(loadCorrectGameMode, 2000);
 }
+
 function player1ChoosesRock() {
     var player1Choice = "rock" 
     var player2Choice = takeTurns();
@@ -184,6 +202,7 @@ function player1ChoosesRock() {
     resultsIcons.innerHTML = rockIcon + computerIcon;
     endsRound();
 }
+
 function player1ChoosesPaper() {
     var player1Choice = "paper"
     var player2Choice = takeTurns();
@@ -192,6 +211,7 @@ function player1ChoosesPaper() {
     resultsIcons.innerHTML = paperIcon + computerIcon;
     endsRound();
 }
+
 function player1ChoosesScissors() {
     var player1Choice = "scissors"
     var player2Choice = takeTurns();
@@ -200,6 +220,7 @@ function player1ChoosesScissors() {
     resultsIcons.innerHTML = scissorsIcon + computerIcon;    
     endsRound();
 }
+
 function player1ChoosesDifficultLizard() {
     var player1Choice = "lizard"
     var player2Choice = takeTurns();
@@ -208,6 +229,7 @@ function player1ChoosesDifficultLizard() {
     resultsIcons.innerHTML = lizardIcon + computerIcon;
     endsRound();
 }
+
 function player1ChoosesDifficultAlien() {
     var player1Choice = "alien"
     var player2Choice = takeTurns();
@@ -216,10 +238,12 @@ function player1ChoosesDifficultAlien() {
     resultsIcons.innerHTML = alienIcon + computerIcon;
     endsRound();
 }
+
 function getRandomIndex(iconsArray) {
     var randomIndexNumber = Math.floor(Math.random() * iconsArray.length);
     return iconsArray[randomIndexNumber];
 }
+
 function getComputerIcon(computerChoice) {
     var computerIcon = '';
     if (computerChoice === "rock") {
