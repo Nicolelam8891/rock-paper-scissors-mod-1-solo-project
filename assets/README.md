@@ -28,6 +28,7 @@ Nicole Ngoc Gia Lam: https://github.com/Nicolelam8891
 4. Refactored CSS code towards the end and deleted unnecessary code. 
 5. Designed the app using my favorite colors. 
 6. I started early and spent a good amount of time each day ~ 8 hours/day so that I can finish in time! I spent around 40+ hours on this project. 
+7. Figured out how to make a gif and attach it to this readMe, thanks to @Johann
 
 ## Challenges:
 - Getting started with JS.
