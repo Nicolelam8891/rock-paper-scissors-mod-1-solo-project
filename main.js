@@ -1,9 +1,4 @@
 // Global variables:
-var player1;
-var player2;
-var player1Choice; 
-var player2Choice;
-
 var classicGameArray = ["rock", "paper", "scissors"]
 var difficultGameArray = ["rock", "paper", "scissors", "lizard", "alien"]
 
@@ -14,20 +9,11 @@ var lizardIcon = '<img src="assets/lizard.png" class="difficult-fighter-icon" id
 var alienIcon = '<img src="assets/happy-alien.png" class="difficult-fighter-icon" id="difficult-alien">';
 
 // DOM Query Selectors 👇
-var player1Emoji = document.querySelector(".player-1-emoji");
-var player2Emoji = document.querySelector(".player-2-emoji");
-var player1Name = document.querySelector(".player1-name");
-var player2Name = document.querySelector(".player2-name");
-var player1Score = document.querySelector(".player1-score");
-var player2Score = document.querySelector(".player2-score");
-
 var changeGameButton = document.querySelector(".change-game-button");
+var chooseGameMode = document.querySelector(".choose-game-mode");
 var chooseGameMessage = document.querySelector("h2.choose-game-message");
-
 var classicButtonContainer = document.querySelector(".classic-icon-container");
 var difficultButtonContainer = document.querySelector(".difficult-icon-container");
-
-var chooseGameMode = document.querySelector(".choose-game-mode");
 var resultsIcons = document.querySelector(".results-icons");
 
 // Event Listeners 👇
@@ -70,8 +56,8 @@ changeGameButton.addEventListener("click", function() {
 
 //Functions 👇
 function createGame() {
-    player1 = createPlayer("Player 1", "🧝🏼‍♀️", 0);
-    player2 = createPlayer("Computer", "💻", 0);
+    var player1 = createPlayer("Human", "🧝🏼‍♀️", 0);
+    var player2 = createPlayer("Computer", "💻", 0);
     
     var game = {
         player1: player1,
@@ -81,7 +67,6 @@ function createGame() {
     }
     return game;
 }
-
 function createPlayer(name, token, wins) {
     var player = {
         name: name,
@@ -90,8 +75,13 @@ function createPlayer(name, token, wins) {
     }
     return player;
 }
-
 function updatePlayerInfo() {
+    var player1Emoji = document.querySelector(".player-1-emoji");
+    var player2Emoji = document.querySelector(".player-2-emoji");
+    var player1Name = document.querySelector(".player1-name");
+    var player2Name = document.querySelector(".player2-name");
+    var player1Score = document.querySelector(".player1-score");
+    var player2Score = document.querySelector(".player2-score");
     player1Name.innerHTML = gameObject.player1.name;
     player2Name.innerHTML = gameObject.player2.name;
     player1Emoji.innerHTML = gameObject.player1.token;
@@ -99,7 +89,6 @@ function updatePlayerInfo() {
     player1Score.innerHTML = "Wins: " + gameObject.player1.wins;
     player2Score.innerHTML = "Wins: " + gameObject.player2.wins;
 }
-
 function startRound() {
     chooseGameMessage.innerHTML = "<em>Choose your fighter!</em>"
     chooseGameMode.style.display = "none"
@@ -117,9 +106,9 @@ function loadDifficultGame() {
     startRound();
 }
 function loadHomePage() {
+    chooseGameMessage.innerHTML = "<em>Choose your game!</em>";
     gameObject.classicModeActive = false;
     gameObject.difficultModeActive = false;
-    chooseGameMessage.innerHTML = "<em>Choose your game!</em>";
     chooseGameMode.style.display = "block";
     classicButtonContainer.style.display = "none";
     difficultButtonContainer.style.display = "none";
@@ -133,7 +122,6 @@ function loadCorrectGameMode() {
         loadDifficultGame();
     }
 }
-
 function takeTurns() {
     if (gameObject.classicModeActive === true) {
         player2Choice = getRandomIndex(classicGameArray);
@@ -142,7 +130,6 @@ function takeTurns() {
     }
     return player2Choice;
 }
-
 function player2WinsMessage() {
     chooseGameMessage.innerHTML = `${gameObject.player2.token}${gameObject.player2.name} wins this round!${gameObject.player2.token}`;
 }
@@ -190,40 +177,40 @@ function endsRound() {
     setTimeout(loadCorrectGameMode, 2000);
 }
 function player1ChoosesRock() {
-    player1Choice = "rock" 
-    player2Choice = takeTurns();
+    var player1Choice = "rock" 
+    var player2Choice = takeTurns();
     determineWinner(player1Choice, player2Choice);
     var computerIcon = getComputerIcon(player2Choice)
     resultsIcons.innerHTML = rockIcon + computerIcon;
     endsRound();
 }
 function player1ChoosesPaper() {
-    player1Choice = "paper"
-    player2Choice = takeTurns();
+    var player1Choice = "paper"
+    var player2Choice = takeTurns();
     determineWinner(player1Choice, player2Choice);
     var computerIcon = getComputerIcon(player2Choice)
     resultsIcons.innerHTML = paperIcon + computerIcon;
     endsRound();
 }
 function player1ChoosesScissors() {
-    player1Choice = "scissors"
-    player2Choice = takeTurns();
+    var player1Choice = "scissors"
+    var player2Choice = takeTurns();
     determineWinner(player1Choice, player2Choice);
     var computerIcon = getComputerIcon(player2Choice)
     resultsIcons.innerHTML = scissorsIcon + computerIcon;    
     endsRound();
 }
 function player1ChoosesDifficultLizard() {
-    player1Choice = "lizard"
-    player2Choice = takeTurns();
+    var player1Choice = "lizard"
+    var player2Choice = takeTurns();
     determineWinner(player1Choice, player2Choice);
     var computerIcon = getComputerIcon(player2Choice)
     resultsIcons.innerHTML = lizardIcon + computerIcon;
     endsRound();
 }
 function player1ChoosesDifficultAlien() {
-    player1Choice = "alien"
-    player2Choice = takeTurns();
+    var player1Choice = "alien"
+    var player2Choice = takeTurns();
     determineWinner(player1Choice, player2Choice);
     var computerIcon = getComputerIcon(player2Choice)
     resultsIcons.innerHTML = alienIcon + computerIcon;
