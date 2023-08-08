@@ -20,7 +20,7 @@ Nicole Ngoc Gia Lam: https://github.com/Nicolelam8891
 
 ## Learning Goals:
 1. Solidify & illustrated understanding of DRY JS, event delegation to handle similar event listeners. 
-2. Understand the difference between data model and how data is displyed on the DOM. 
+2. Better understanding of the difference between data model and how data is displyed on the DOM. 
 3. Displayed problem solving process to break down large and complex problems. Solved everything step by step. 
 4. Refactored code. 
 
