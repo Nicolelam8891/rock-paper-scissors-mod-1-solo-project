@@ -31,16 +31,22 @@
             <h2 class="choose-game-message"><em>Choose your game!</em></h2>
         </div>
         <section class="choose-game-mode" style="display:block">
-            <button class ="classic-game-button">🪨CLASSIC📃
-                <p class ="classic-game-button">rock > scissors <br> paper > rock <br> scissors > paper</p>
-            </button> 
-            <button class ="difficult-game-button">🦎DIFFICULT👽
-                <p class ="difficult-game-button">rock > scissors & lizard <br> paper > rock & alien <br> scissors > paper & lizard <br> lizard > paper & alien <br> alien > scissors & rock</p>
-            </button> 
+            <ul>
+                <li>
+                    <button class ="classic-game-button">🪨CLASSIC📃
+                        <p class ="classic-game-button">rock &gt; scissors<br>paper &gt; rock<br>scissors &gt; paper</p>
+                    </button>
+                </li>
+                <li>
+                    <button class ="difficult-game-button">🦎DIFFICULT👽
+                        <p class ="difficult-game-button">rock &gt; scissors &amp; lizard<br>paper &gt; rock &amp; alien<br>scissors &gt; paper &amp;lizard<br>lizard &gt; paper &amp; alien<br>alien &gt; scissors &amp; rock</p>
+                    </button>
+                </li>    
+            </ul> 
         </section>
         <section class="classic-icon-container" style="display:none">
             <button class="fighterButton" id="rock-button">
-                <img src="assets/happy-rocks.png" class="fighter-icon" id="rock">
+                <img src="assets/happy-rocks.png" class="fighter-icon" id="rocks">
             </button>
             <button class="fighterButton" id="paper-button">
                 <img src="assets/happy-paper.png" class="fighter-icon" id="paper">
@@ -49,11 +55,9 @@
                 <img src="assets/happy-scissors.png" class="fighter-icon" id="scissors">
             </button>
         </section>
-        <section class="results-icons" style="display:none">  
-        </section>
         <section class="difficult-icon-container" style="display:none">
             <button class="difficultFighterButton" id="difficult-rock-button">
-                <img src="assets/happy-rocks.png" class="difficult-fighter-icon" id="difficult-rock">
+                <img src="assets/happy-rocks.png" class="difficult-fighter-icon" id="difficult-rocks">
             </button>
             <button class="difficultFighterButton" id="difficult-paper-button">
                 <img src="assets/happy-paper.png" class="difficult-fighter-icon" id="difficult-paper">
@@ -67,6 +71,8 @@
             <button class="difficultFighterButton" id="difficult-alien-button">
                 <img src="assets/happy-alien.png" class="difficult-fighter-icon" id="difficult-alien">
             </button>
+        </section>
+        <section class="results-icons" style="display:none">  
         </section>           
     </header>
 </main>

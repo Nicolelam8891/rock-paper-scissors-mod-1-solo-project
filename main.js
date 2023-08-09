@@ -2,11 +2,13 @@
 var classicGameArray = ["rock", "paper", "scissors"];
 var difficultGameArray = ["rock", "paper", "scissors", "lizard", "alien"];
 
-var rockIcon = '<img src="assets/happy-rocks.png" class="fighter-icon" id="rock">';
-var paperIcon = '<img src="assets/happy-paper.png" class="fighter-icon" id="paper">';
-var scissorsIcon = '<img src="assets/happy-scissors.png" class="fighter-icon" id="scissors">';
-var lizardIcon = '<img src="assets/lizard.png" class="difficult-fighter-icon" id="difficult-lizard">';
-var alienIcon = '<img src="assets/happy-alien.png" class="difficult-fighter-icon" id="difficult-alien">';
+var iconLocations = {
+    rock: 'assets/happy-rocks.png',
+    paper: 'assets/happy-paper.png',
+    scissors: 'assets/happy-scissors.png',
+    lizard: 'assets/lizard.png',
+    alien: 'assets/happy-alien.png'
+}
 
 // DOM Query Selectors 👇
 var changeGameButton = document.querySelector(".change-game-button");
@@ -24,34 +26,28 @@ window.addEventListener("load", function () {
 
 chooseGameMode.addEventListener("click", function (e) {
     if (e.target.classList.contains("classic-game-button")) {
-        loadClassicGame();
+        gameObject.classicModeActive = true;
+        loadGame();
     } else if (e.target.classList.contains("difficult-game-button")) {
-        loadDifficultGame();    
+        gameObject.difficultModeActive = true;
+        loadGame();  
     }
 });
 
 classicButtonContainer.addEventListener("click", function (e) {
-    if (e.target.id === "rock" || e.target.id === "rock-button") {
-        player1ChoosesRock();
-    } else if (e.target.id === "paper" || e.target.id === "paper-button") {
-        player1ChoosesPaper();
-    } else if (e.target.id === "scissors" || e.target.id === "scissors-button") {
-        player1ChoosesScissors();
-    }
+    if (e.target.classList.contains("fighter-icon")) {
+        choice = e.target.id
+        icon = e.target.outerHTML
+        player1Chooses(choice, icon);
+     }
 });
 
 difficultButtonContainer.addEventListener("click", function (e) {
-    if (e.target.id === "difficult-rock-button" || e.target.id === "difficult-rock") {
-        player1ChoosesRock();
-    } else if (e.target.id === "difficult-paper-button" || e.target.id === "difficult-paper") {
-        player1ChoosesPaper();
-    } else if (e.target.id === "difficult-scissors-button" || e.target.id === "difficult-scissors") {
-        player1ChoosesScissors();
-    } else if (e.target.id === "difficult-lizard-button" || e.target.id === "difficult-lizard") {
-        player1ChoosesDifficultLizard();
-    } else if (e.target.id === "difficult-alien-button" || e.target.id === "difficult-alien") {
-        player1ChoosesDifficultAlien();
-    }
+    if (e.target.classList.contains("difficult-fighter-icon")) {
+        choice = e.target.id
+        icon = e.target.outerHTML
+        player1Chooses(choice, icon);
+     }
 });
 
 changeGameButton.addEventListener("click", function() {
@@ -103,15 +99,12 @@ function startRound() {
     changeGameButton.style.display = "block";
 }
 
-function loadClassicGame() {
-    classicButtonContainer.style.display = "flex";
-    gameObject.classicModeActive = true;
-    startRound();
-}
-
-function loadDifficultGame() {
-    difficultButtonContainer.style.display = "flex";
-    gameObject.difficultModeActive = true;
+function loadGame() {
+    if (gameObject.classicModeActive === true){
+        classicButtonContainer.style.display = "flex";
+    } else if (gameObject.difficultModeActive === true){
+        difficultButtonContainer.style.display = "flex";
+    }
     startRound();
 }
 
@@ -124,14 +117,6 @@ function resetGame() {
     difficultButtonContainer.style.display = "none";
     resultsIcons.style.display = "none";
     changeGameButton.style.display = "none";
-}
-
-function loadCorrectGameMode() {
-    if (gameObject.classicModeActive === true) {
-        loadClassicGame();
-    } else if (gameObject.difficultModeActive === true) {
-        loadDifficultGame();
-    }
 }
 
 function takeTurns() {
@@ -162,25 +147,19 @@ function determineWinner(player1Choice, player2Choice) {
     var paperAlienCombo = (player2Choice === "paper" || player2Choice === "alien");
     var scissorsRockCombo = (player2Choice === "scissors" || player2Choice === "rock");
 
-    if (player1Choice === player2Choice) {
+    if (player1Choice.includes(player2Choice)) {
         calculateDraw();
     } else if (
-        (player1Choice === "rock" && scissorsLizardCombo) ||
-        (player1Choice === "paper" && rockAlienCombo) ||
-        (player1Choice === "scissors" && paperLizardCombo) ||
-        (player1Choice === "lizard" && paperAlienCombo) ||
-        (player1Choice === "alien" && scissorsRockCombo) 
+        (player1Choice.includes("rock") && scissorsLizardCombo) ||
+        (player1Choice.includes("paper") && rockAlienCombo) ||
+        (player1Choice.includes("scissors") && paperLizardCombo) ||
+        (player1Choice.includes("lizard") && paperAlienCombo) ||
+        (player1Choice.includes("alien") && scissorsRockCombo) 
        ) {
         gameObject.player1.wins++;
         player1WinsMessage();
         updatePlayerInfo();
-       } else if (
-        (player1Choice === "rock" && paperAlienCombo) || 
-        (player1Choice === "paper" && scissorsLizardCombo) || 
-        (player1Choice === "scissors" && rockAlienCombo) || 
-        (player1Choice === "lizard" && scissorsRockCombo) || 
-        (player1Choice === "alien" && paperLizardCombo)
-       ) {
+       } else {
         gameObject.player2.wins++;
         player2WinsMessage();
         updatePlayerInfo();
@@ -191,51 +170,18 @@ function endsRound() {
     classicButtonContainer.style.display = "none";
     difficultButtonContainer.style.display = "none";
     resultsIcons.style.display = "flex";
-    setTimeout(loadCorrectGameMode, 2000);
+    setTimeout(loadGame, 2000);
 }
 
-function player1ChoosesRock() {
-    var player1Choice = "rock";
+function displayIcons(player1Icon, player2Icon) {
+    resultsIcons.innerHTML = player1Icon + player2Icon;
+}
+
+function player1Chooses(player1Choice, player1Icon) {
     var player2Choice = takeTurns();
     determineWinner(player1Choice, player2Choice);
     var computerIcon = getComputerIcon(player2Choice);
-    resultsIcons.innerHTML = rockIcon + computerIcon;
-    endsRound();
-}
-
-function player1ChoosesPaper() {
-    var player1Choice = "paper";
-    var player2Choice = takeTurns();
-    determineWinner(player1Choice, player2Choice);
-    var computerIcon = getComputerIcon(player2Choice);
-    resultsIcons.innerHTML = paperIcon + computerIcon;
-    endsRound();
-}
-
-function player1ChoosesScissors() {
-    var player1Choice = "scissors";
-    var player2Choice = takeTurns();
-    determineWinner(player1Choice, player2Choice);
-    var computerIcon = getComputerIcon(player2Choice);
-    resultsIcons.innerHTML = scissorsIcon + computerIcon;    
-    endsRound();
-}
-
-function player1ChoosesDifficultLizard() {
-    var player1Choice = "lizard";
-    var player2Choice = takeTurns();
-    determineWinner(player1Choice, player2Choice);
-    var computerIcon = getComputerIcon(player2Choice);
-    resultsIcons.innerHTML = lizardIcon + computerIcon;
-    endsRound();
-}
-
-function player1ChoosesDifficultAlien() {
-    var player1Choice = "alien";
-    var player2Choice = takeTurns();
-    determineWinner(player1Choice, player2Choice);
-    var computerIcon = getComputerIcon(player2Choice);
-    resultsIcons.innerHTML = alienIcon + computerIcon;
+    displayIcons(player1Icon, computerIcon)
     endsRound();
 }
 
@@ -245,17 +191,7 @@ function getRandomIndex(iconsArray) {
 }
 
 function getComputerIcon(computerChoice) {
-    var computerIcon = '';
-    if (computerChoice === "rock") {
-       computerIcon = rockIcon;
-    } else if (computerChoice === "paper") {
-       computerIcon = paperIcon; 
-    } else if (computerChoice === "scissors") {
-        computerIcon = scissorsIcon; 
-    } else if (computerChoice === "lizard") {
-       computerIcon = lizardIcon;
-    } else if (computerChoice === "alien") {
-        computerIcon = alienIcon;
-    }
+    var computerIconURL = iconLocations[computerChoice];
+    var computerIcon = `<img src="${computerIconURL}" class="fighter-icon" id="${computerChoice}">`
     return computerIcon;
 }
